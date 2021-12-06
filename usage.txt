@@ -1,0 +1,93 @@
+usage: vcp.py ([WORKING_DIR] | [WORKING DIR] [MAN_TRACK] | [SOURCE_FILE] [TARGET_FILE]) [OPTIONS]
+
+
+GENERATE MULTIPLE CORRESPONDENCES:
+
+Description:    Solves the vertex correspondence problem of multiple polygons present in the working
+                directory.
+
+Working dir:    Directory path to be used in generation of multiple correspondences. The directory
+                should contain .wkt files starting in 0, where in each is the WKT of the polygon in
+                each frame. The working directory can also contain a folder named simplifications (or
+                the name defined in the config file) where simplified version of the WKTs should be found.
+
+Options:        -h --help
+                Display help and exit.
+
+                -b --bbox
+                Use bounding box method to generate feature points and correspondences instead of the
+                default method.
+
+                -o --output-file
+                JSON filename where the output correspondences should be stored in the working directory,
+                in GEO-JSON format.
+
+                -c --config-file
+                Path to the configuration file to be used, which should be a JSON file containing the
+                fields 'max_angle', 'min_angle', 'd_min', 'd_max' and 'simplification_folder'. If any or
+                all of these values are absent, default values are used.  (If the bbox method is used,
+                there is no need to be used a config file)
+
+
+GENERATE MULTIPLE CORRESPONDENCES BASED ON A MAN:TRACK FILE:
+
+Description:   Solves the vertex correspondence problem of multiple polygons present in the working
+                directory, in a tree structure, using the help of a man_track file (this method is mainly
+                used when the problem is being applied to cells os bodies which require tree structure to
+                be presented/solved).
+
+Working dir:    Directory path to be used in multiple correspondences. The directory should contain subdirectories
+                starting in 0, which represent each frame, and inside each there should be .wkt
+                files, starting in 0, one for each polygon of a body.
+
+man_track:      Man_track_file in the format presented by celltrackingchallenge.net, where the first
+                column represents a label, the second and third columns represent the frame at which they
+                first and lastly appear on, respectively, and the last columns representing the label of
+                its parent.
+
+Options:        -h --help
+                Display help and exit.
+
+                -b --bbox
+                Use bounding box method to generate feature points and correspondences instead of the
+                default method (in this case, this method is recommended)
+
+                -o --output-file
+                JSON filename where the output correspondences should be stored in the working directory,
+                in GEO-JSON format.
+
+                -c --config-file
+                Path to the configuration file to be used, which should be a JSON file containing the
+                fields 'max_angle', 'min_angle', 'd_min', 'd_max' and 'simplification_folder'. If any or
+                all of these values are absent, default values are used. (If the bbox method is used, there
+                is no need to be used a config file)
+
+
+GENERATE SINGLE CORRESPONDENCE:
+
+Description:    Solves the vertex correspondence problem of a single polygon pair.
+
+Source_file:    Path to the .wkt file containing the source polygon to be used in the vcp.
+
+Target_file:    Path to the .wkt file containing the target polygon to be used in the vcp.
+
+Options:        -h --help
+                Display help and exit.
+
+                -b --bbox
+                Use bounding box method to generate feature points and correspondences instead of the
+                default method.
+
+                -s --source-simplification
+                Path to the .wkt simplified version of the source polygon to help in the generation of
+                feature points
+
+                -t --target-simplification
+                Path to the .wkt simplified version of the target polygon to help in the generation of
+                feature points
+
+                -c --config-file
+                Path to the configuration file to be used, which should be a JSON file containing the
+                fields 'max_angle', 'min_angle', 'd_min', 'd_max' and 'simplification_folder'. (In this
+                case, there is no need to contain a 'simplification_folder' field).
+

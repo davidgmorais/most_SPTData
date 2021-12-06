@@ -1,0 +1,7 @@
+{
+    "max_angle": 160,
+    "min_angle": 20,
+    "d_min": 2.8,
+    "d_max": 1.5,
+    "simplification_folder": "/simplifications"
+}
